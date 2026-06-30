@@ -1,0 +1,63 @@
+import pygame
+
+x=400
+y=300
+speed=5
+radius=30
+direction="right"
+mouth=15
+mouth_speed=1
+
+def mouth_movement(mouth,mouth_speed):
+    mouth+=mouth_speed
+    if mouth>=15:
+        mouth_speed=-1
+    if mouth<=0:
+        mouth_speed=1
+    return mouth,mouth_speed
+def update():
+    global x,y,direction,mouth,mouth_speed
+    keys=pygame.key.get_pressed()
+    if keys[pygame.K_RIGHT]:
+        mouth,mouth_speed=mouth_movement(mouth,mouth_speed)
+        x+=speed
+        direction="right"
+    if keys[pygame.K_LEFT]:
+        mouth,mouth_speed=mouth_movement(mouth,mouth_speed)
+        x-=speed
+        direction="left"
+    if keys[pygame.K_UP]:
+        mouth,mouth_speed=mouth_movement(mouth,mouth_speed)
+        y-=speed
+        direction="up"
+    if keys[pygame.K_DOWN]:
+        mouth,mouth_speed=mouth_movement(mouth,mouth_speed)
+        y+=speed
+        direction="down"
+    if x>800-radius:
+        x=800-radius
+    if x<radius:
+        x=radius
+    if y<radius:
+        y=radius
+    if y>600-radius:
+        y=600-radius
+
+    
+    
+def draw(screen):
+    pygame.draw.circle(screen,(255,255,0),(x,y),radius)
+    if direction=="right":
+        pygame.draw.polygon(screen,(0,0,0),[(x,y),(x+radius,y-mouth),(x+radius,y+mouth)])
+        pygame.draw.circle(screen, (0,0,0), (x, y - 10), 5)
+    if direction=="left":
+        pygame.draw.polygon(screen,(0,0,0),[(x,y),(x-radius,y-mouth),(x-radius,y+mouth)])
+        pygame.draw.circle(screen, (0,0,0), (x, y -10), 5)    
+    if direction=="up":
+        pygame.draw.polygon(screen,(0,0,0),[(x,y),(x-mouth,y-radius),(x+mouth,y-radius)])
+        pygame.draw.circle(screen, (0,0,0), (x - 10, y), 5)
+    if direction=="down":
+        pygame.draw.polygon(screen,(0,0,0),[(x,y),(x-mouth,y+radius),(x+mouth,y+radius)])
+        pygame.draw.circle(screen, (0,0,0), (x + 10, y), 5)
+
+
