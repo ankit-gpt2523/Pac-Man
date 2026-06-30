@@ -1,5 +1,6 @@
 import pygame
 import player
+import maze
 
 pygame.init()
 
@@ -19,6 +20,7 @@ while running:
     #3 Draw
     screen.fill((0,0,0))
     player.draw(screen)
+    maze.draw(screen)
 
     #4 Display
     pygame.display.update()

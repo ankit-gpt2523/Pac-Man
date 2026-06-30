@@ -60,4 +60,10 @@ def draw(screen):
         pygame.draw.polygon(screen,(0,0,0),[(x,y),(x-mouth,y+radius),(x+mouth,y+radius)])
         pygame.draw.circle(screen, (0,0,0), (x + 10, y), 5)
 
+player_rect = pygame.Rect(
+    x - radius,
+    y - radius,
+    radius * 2,
+    radius * 2
+)
 
