@@ -42,9 +42,7 @@ def update():
         y=radius
     if y>600-radius:
         y=600-radius
-
-    
-    
+  
 def draw(screen):
     pygame.draw.circle(screen,(255,255,0),(x,y),radius)
     if direction=="right":
